@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Laboratorio4.MainPage"
+              xmlns:flv="clr-namespace:DLToolkit.Forms.Controls;assembly=DLToolkit.Forms.Controls.FlowListView"
+             >
+
+    <StackLayout  Margin="0,120,0,0" Padding="10">
+        <flv:FlowListView FlowColumnCount="5"   
+                SeparatorVisibility="Default"   
+                HasUnevenRows="True" 
+                          
+                FlowItemTappedCommand="{Binding ItemTappedCommand}"   
+                FlowItemsSource="{Binding Items}"
+             >
+
+            <flv:FlowListView.FlowColumnTemplate>
+                <DataTemplate
+                    >
+                    <Frame   BackgroundColor="{Binding BGColor}"
+                Margin="5">
+                        <Label HorizontalOptions="Fill"
+                     BackgroundColor="{Binding BGColor}"    
+                    VerticalOptions="Fill"   
+                    TextColor="Black"  
+                    XAlign="Center"  
+                    YAlign="Center"   
+                    Text="{Binding }"/>
+                    </Frame>
+                </DataTemplate>
+            </flv:FlowListView.FlowColumnTemplate>
+        </flv:FlowListView>
+    </StackLayout>
+
+</ContentPage>
