@@ -22,7 +22,25 @@ namespace Laboratorio4
         private Card previousCard = null;
         private int previousIndex = -1;
         private object[] letters = Helper.getList().ToArray();
-
+        private int pairNumber = 0;
+        private string answer = "";
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+        public string Answer
+        {
+            get { return answer; }
+            set
+            {
+                if (value != null)
+                {
+                    answer = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
 
 
         public MainPageModel(MainPage mainPage)
@@ -134,7 +152,7 @@ namespace Laboratorio4
                                             _items[index] = newCard;
                                             OnPropertyChanged(nameof(_items));
                                             previousIndex = previousCard.Index;
-                                            mainPage.DisplayAlert("iguales", "iguales" + "", "ok");
+                                            
                                         }
                                         else
                                         {
@@ -174,13 +192,18 @@ namespace Laboratorio4
                             _items[previousCard.Index] = dummy;
                             _items[index] = dummy;
                             OnPropertyChanged(nameof(_items));
+                            this.pairNumber++;
                             previousCard = null;
 
                         }
 
 
                     }
-                    
+
+                    if (pairNumber == 12)
+                    {
+                        mainPage.DisplayAlert("¡Haz Ganado!", "¡Usted ha Ganado!", "Ok");
+                    }
 
                 });
 
@@ -211,10 +234,32 @@ namespace Laboratorio4
                         index++;
                         this._items.Add(card);
                     }
+                    this.pairNumber = 0;
+                    Answer = "";
                 });
             }
         }
 
-
+        public Command VerRespuesta { get {
+                return new Command(() =>
+                {
+                    int count = 0;
+                    foreach(var letter in letters)
+                    {
+                        if (count == 4)
+                        {
+                            Answer += letter.ToString()+" " + "\n";
+                            count = 0;
+                        }
+                        else
+                        {
+                            Answer += letter.ToString() + " ";
+                            count++;
+                        }
+                        
+                    }
+                });
+            
+            } }
     }
 }

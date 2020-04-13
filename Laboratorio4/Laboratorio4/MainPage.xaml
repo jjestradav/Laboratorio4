@@ -9,7 +9,9 @@
              xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"              Title="Safe Area"              ios:Page.UseSafeArea="true"
              >
 
-    <StackLayout  Margin="0,120,0,0" Padding="10">
+    <StackLayout  Margin="0,60,0,0" Padding="10">
+
+    
         <flv:FlowListView FlowColumnCount="5"   
                 SeparatorVisibility="Default"   
                 HasUnevenRows="True" 
@@ -33,13 +35,19 @@
                     </Frame>
                 </DataTemplate>
             </flv:FlowListView.FlowColumnTemplate>
-
+            
         </flv:FlowListView>
-
+        <Frame>
+            <Label Text="{Binding Answer}" HorizontalTextAlignment="Center"  />
+        </Frame>
         <Button Text="Reset"
                 VerticalOptions="CenterAndExpand"
                 HorizontalOptions="Center"
                 Command="{Binding Reset}" />
+        <Button Text="Ver Respuestas"
+                VerticalOptions="CenterAndExpand"
+                HorizontalOptions="Center"
+                Command="{Binding VerRespuesta}" />
 
     </StackLayout>
 
