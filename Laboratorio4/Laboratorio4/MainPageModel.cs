@@ -21,7 +21,6 @@ namespace Laboratorio4
         private MainPage mainPage;
         private Card previousCard = null;
         private int previousIndex = -1;
-        private int _number = 0;
         private object[] letters = Helper.getList().ToArray();
 
 
@@ -40,7 +39,7 @@ namespace Laboratorio4
             {
                 Card card = new Card()
                 {
-                    Letter = '?',
+                    Letter = '#',
                     Index = index
                 };
                 index++;
@@ -68,19 +67,6 @@ namespace Laboratorio4
             }
         }
 
-       public int Count
-        {
-            get{
-                _number++;
-                return _number++;
-            }
-
-            set
-            {
-                _number++;
-                }
-            
-        }
 
         public Command ItemTappedCommand
         {
@@ -155,7 +141,7 @@ namespace Laboratorio4
                                             Card dummy = new Card
                                             {
                                                 Index = previousCard.Index,
-                                                Letter = '?',
+                                                Letter = '#',
                                                 BGColor = Color.Green
                                             };
                                             Console.WriteLine("NO IGUALES" + previousCard.Index);
@@ -205,5 +191,30 @@ namespace Laboratorio4
             Console.WriteLine(e.OldItems);
             //throw new NotImplementedException();
         }
+
+        public Command Reset
+        {
+            get
+            {
+                return new Command(() =>
+                {
+                    this.letters = Helper.getList().ToArray();
+                    _items.Clear();
+                    int index = 0;
+                    foreach (var letter in letters)
+                    {
+                        Card card = new Card()
+                        {
+                            Letter = '#',
+                            Index = index
+                        };
+                        index++;
+                        this._items.Add(card);
+                    }
+                });
+            }
+        }
+
+
     }
 }

@@ -44,7 +44,12 @@ namespace Laboratorio4
         public char Letter
         {
             get { return letter; }
-            set { this.letter = value; }
+            set 
+            { 
+                this.letter = value;
+                NotifyPropertyChanged();
+
+            }
 
         }
 

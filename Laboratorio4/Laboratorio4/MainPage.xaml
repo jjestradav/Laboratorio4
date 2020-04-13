@@ -6,6 +6,7 @@
              mc:Ignorable="d"
              x:Class="Laboratorio4.MainPage"
               xmlns:flv="clr-namespace:DLToolkit.Forms.Controls;assembly=DLToolkit.Forms.Controls.FlowListView"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"              Title="Safe Area"              ios:Page.UseSafeArea="true"
              >
 
     <StackLayout  Margin="0,120,0,0" Padding="10">
@@ -28,11 +29,19 @@
                     TextColor="Black"  
                     XAlign="Center"  
                     YAlign="Center"   
-                    Text="{Binding }"/>
+                    Text="{Binding Letter}"/>
                     </Frame>
                 </DataTemplate>
             </flv:FlowListView.FlowColumnTemplate>
+
         </flv:FlowListView>
+
+        <Button Text="Reset"
+                VerticalOptions="CenterAndExpand"
+                HorizontalOptions="Center"
+                Command="{Binding Reset}" />
+
     </StackLayout>
+
 
 </ContentPage>
